@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pembayaran Selesai</title>
+  <link rel="icon" href="timeplates.jpg" type="image/png" />
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      color: #222;
+      line-height: 1.6;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+      max-width: 200px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .info {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Pembayaran Selesai</h1>
+    <div class="info" id="paymentInfo"></div>
+    <button class="button" onclick="window.location.href='coloring_book_templates.html'">Kembali ke Produk</button>
+  </div>
+
+  <script>
+    // Ambil metode pembayaran dari query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentMethod = urlParams.get('method');
+
+    const paymentInfo = document.getElementById('paymentInfo');
+
+    if (paymentMethod === "QRIS") {
+      paymentInfo.innerHTML = "<p>Silakan scan QR Code berikut untuk menyelesaikan pembayaran:</p><img src='https://example.com/qris-code.png' alt='QRIS Code' style='max-width: 100%;' />";
+    } else if (paymentMethod === "Transfer Bank") {
+      paymentInfo.innerHTML = "<p>Silakan transfer ke rekening berikut:</p><p><strong>No. Rekening: 123-456-789</strong></p>";
+    } else if (paymentMethod === "DANA") {
+      paymentInfo.innerHTML = "<p>Silakan transfer ke DANA admin berikut:</p><p><strong>No. DANA: 0812-3456-7890</strong></p>";
+    } else {
+      paymentInfo.innerHTML = "<p>Metode pembayaran tidak valid.</p>";
+    }
+  </script>
+
+</body>
+</html>
