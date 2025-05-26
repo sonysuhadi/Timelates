@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Silakan Melakukan Pembayaran</title>
+  <link rel="icon" href="timeplates.jpg" type="image/png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      color: #222;
+      line-height: 1.6;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+      max-width: 220px;
+      margin: 10px auto;
+      display: block;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .wa-button {
+      background-color: #25d366;
+    }
+    .info {
+      margin: 20px 0;
+    }
+    .back-button {
+      color: red;
+      text-decoration: none;
+      margin-top: 20px;
+      display: block;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Silakan Melakukan Pembayaran</h1>
+    <div class="info" id="paymentInfo"></div>
+
+    <div class="button-container" id="buttonContainer">
+      <a id="whatsappButton" class="button wa-button" target="_blank">Kirim Bukti Pembayaran via WhatsApp</a>
+      <a id="payButton" class="button" style="display: none;" target="_blank">Bayar Sekarang</a>
+    </div>
+
+    <a href="beranda.html" class="back-button">← Kembali ke Produk</a>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const method = urlParams.get('method') || '';
+    const productId = urlParams.get('productId') || '';
+    const info = document.getElementById('paymentInfo');
+    const waButton = document.getElementById('whatsappButton');
+    const payButton = document.getElementById('payButton');
+
+    const adminPhone = '6281387047210';
+    const waMessage = `Halo Admin, saya sudah melakukan pembayaran untuk produk "${productId}" menggunakan metode: ${method}. Berikut bukti pembayarannya:`;
+
+    let html = '';
+    let linkBayar = '';
+
+    switch (method.toLowerCase()) {
+      case 'qris':
+        html = `
+          <p>Silakan scan QR Code berikut untuk menyelesaikan pembayaran:</p>
+          <img src="Qris.jpg" alt="QRIS Code" style="max-width: 100%; border-radius: 8px;" />
+        `;
+        break;
+
+      case 'transfer bank':
+        html = `
+          <p>Silakan transfer ke rekening berikut:</p>
+          <p><strong>No. Rekening: 50228355936<br>Bank DKI<br>a.n. Sony Kurniawan Suhadi</strong></p>
+        `;
+        break;
+
+      case 'dana':
+        html = `
+          <p>Silakan transfer ke akun DANA berikut:</p>
+          <p><strong>0813-8704-7210 (a.n. Sony Kurniawan Suhadi)</strong></p>
+        `;
+        linkBayar = 'https://link.dana.id';
+        break;
+
+      case 'gopay':
+        html = `
+          <p>Silakan transfer ke akun GoPay berikut:</p>
+          <p><strong>0813-8704-7210 (a.n. Sony Kurniawan Suhadi)</strong></p>
+        `;
+        linkBayar = 'https://gopay.co.id/app/scanqr?deeplink_source=request_money';
+        break;
+
+      case 'shopeepay':
+        html = `
+          <p>Silakan kirim melalui ShopeePay ke:</p>
+          <p><strong>0813-8704-7210 (a.n. Sony Kurniawan Suhadi)</strong></p>
+        `;
+        linkBayar = 'https://app.u.shopeepay.co.id/u/YYFnMgT7mxdgG67W1uybf'; 
+        break;
+      default:
+        html = '<p>Metode pembayaran tidak dikenali. Silakan kembali dan pilih ulang.</p>';
+        break;
+    }
+
+    info.innerHTML = html;
+
+    if (linkBayar) {
+      payButton.style.display = 'block';
+      payButton.href = linkBayar;
+    }
+
+    const encodedMessage = encodeURIComponent(waMessage);
+    waButton.href = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
+  </script>
+
+</body>
+</html>

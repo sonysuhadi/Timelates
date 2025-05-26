@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animal Activity Book</title>
+  <link rel="icon" href="timeplates.jpg" type="image/png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      color: #222;
+      line-height: 1.6;
+      padding: 20px;
+      text-align: center;
+    }
+    .product-details {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .product-details img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .description {
+      margin: 15px 0;
+    }
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+      max-width: 200px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .back-arrow {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      text-decoration: none;
+      font-size: 24px;
+      color: red;
+      z-index: 1000;
+    }
+    .back-arrow:hover {
+      opacity: 0.7;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .payment-option {
+      margin: 10px 0;
+      cursor: pointer;
+      color: #007bff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    .payment-option:hover {
+      background-color: #e9ecef;
+    }
+    .selected {
+      background-color: #d1ecf1;
+      border-color: #bee5eb;
+    }
+    .label {
+      flex-grow: 1;
+      text-align: left;
+    }
+    .arrow {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="beranda.html" class="back-arrow">&#8592;</a>
+
+  <div class="product-details">
+    <img src="https://cdn.lynkid.my.id/products/02-05-2025/1746159427123_7487899.webp" alt="Animal Activity Book" />
+    <h1>Animal Activity Book</h1>
+    <div class="description">
+      <p>Deskripsi: Buku aktivitas hewan yang menyenangkan untuk anak-anak.</p>
+      <p class="price">IDR 15K</p>
+    </div>
+    <button class="button" id="buyButton">Order Now</button>
+  </div>
+
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Pilih Metode Pembayaran</h2>
+
+      <div class="payment-option" data-method="Transfer Bank">
+        <span class="label">1. Transfer Bank</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <div class="payment-option" data-method="DANA">
+        <span class="label">2. DANA</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <div class="payment-option" data-method="GOPAY">
+        <span class="label">3. GoPay</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <div class="payment-option" data-method="ShopeePay">
+        <span class="label">4. ShopeePay</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <div class="payment-option" data-method="QRIS">
+        <span class="label">5. QRIS</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+
+      <button class="button" id="confirmPayment">Konfirmasi Pembayaran</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("paymentModal");
+    const buyButton = document.getElementById("buyButton");
+    const closeModal = document.getElementById("closeModal");
+
+    buyButton.onclick = () => modal.style.display = "block";
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => {
+      if (event.target === modal) modal.style.display = "none";
+    };
+
+    let selectedPaymentMethod = '';
+    const options = document.querySelectorAll('.payment-option');
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedPaymentMethod = option.dataset.method;
+      });
+    });
+
+    document.getElementById("confirmPayment").onclick = function () {
+      if (selectedPaymentMethod) {
+        const productId = "animal-activity-book";
+        window.location.href = `pembayaran.html?method=${encodeURIComponent(selectedPaymentMethod)}&productId=${productId}`;
+      } else {
+        alert("Silakan pilih metode pembayaran terlebih dahulu.");
+      }
+    };
+  </script>
+
+</body>
+</html>

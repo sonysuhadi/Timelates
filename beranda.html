@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeplates | Beranda</title>
+  <link rel="icon" href="timeplates.jpg" type="image/png" />
+
+  <style>
+    :root {
+      --bg: #fff5eb;
+      --box: #d9ff4f;
+      --price: #e74c3c;
+      --text: #222;
+      --radius: 12px;
+      --footer-bg: #222;
+      --footer-text: #ccc;
+      --footer-link: #9acd32;
+      --footer-link-hover: #d9ff4f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 15px;
+      flex-grow: 1;
+    }
+
+    .header {
+      text-align: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .header img.logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .username {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .logout-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+
+    nav.social-icons {
+      margin: 15px 0 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav.social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    nav.social-icons a:hover {
+      background-color: #d9ff4f;
+    }
+
+    nav.social-icons img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    nav.social-icons a:hover img {
+      transform: scale(1.15);
+    }
+
+    section[aria-label="Daftar produk Timeplates"] {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    a.product {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--box);
+      padding: 12px 15px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: var(--text);
+      transition: background-color 0.3s ease;
+    }
+
+    a.product:hover {
+      background-color: #c4f037;
+    }
+
+    a.product img {
+      width: 60px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .product-name {
+      flex: 1;
+      margin-left: 15px;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .price {
+      background-color: var(--price);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+
+    footer.footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 40px;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+      user-select: none;
+    }
+
+    footer.footer .footer-links {
+      margin-bottom: 15px;
+    }
+
+    footer.footer .footer-links a {
+      color: var(--footer-link);
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 8px;
+      transition: color 0.3s ease;
+    }
+
+    footer.footer .footer-links a:hover {
+      color: var(--footer-link-hover);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .product-name {
+        font-size: 15px;
+      }
+
+      .price {
+        font-size: 13px;
+        padding: 5px 8px;
+      }
+
+      nav.social-icons a {
+        width: 40px;
+        height: 40px;
+      }
+
+      .username {
+        font-size: 14px;
+      }
+
+      .logout-btn {
+        padding: 5px 10px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header" role="banner" aria-label="Profil Timeplates">
+      <img
+        src="https://cdn.lynkid.my.id/profile/02-05-2025/1746159841399_6011062.webp"
+        alt="Logo Timeplates"
+        class="logo"
+        loading="lazy"
+      />
+
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+
+      <nav class="social-icons" aria-label="Ikon media sosial Timeplates">
+        <a href="https://www.instagram.com/timeplates_" target="_blank" rel="noopener noreferrer" aria-label="Instagram Timeplates" title="Instagram Timeplates">
+          <img src="https://i.pinimg.com/originals/6a/39/8e/6a398e2bffd61024b7fa8c6eaf6a4e62.png" alt="Instagram" loading="lazy" />
+        </a>
+        <a href="mailto:sonysuhadi10@email.com" aria-label="Email Timeplates" title="Email Timeplates">
+          <img src="https://pngimg.com/uploads/email/email_PNG11.png" alt="Email" loading="lazy" />
+        </a>
+        <a href="https://wa.me/6281387047210" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Timeplates" title="WhatsApp Timeplates">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/716/480/original/whatsapp-icon-free-png.png" alt="WhatsApp" loading="lazy" />
+        </a>
+      </nav>
+
+      <div class="username" id="usernameDisplay" aria-live="polite">Halo, </div>
+    </header>
+
+    <section aria-label="Daftar produk Timeplates">
+      <!-- Produk-produk (tidak diubah) -->
+      <a href="animal_activity_book.html" class="product">
+        <img src="https://cdn.lynkid.my.id/products/02-05-2025/1746159427123_7487899.webp" alt="Animal Activity Book" />
+        <div class="product-name">Animal Activity Book</div>
+        <div class="price">IDR 15K</div>
+      </a>
+      <a href="slide_deck_templates.html" class="product">
+        <img src="https://cdn.lynkid.my.id/products/18-05-2025/1747549961404_1559516.webp" alt="Slide Deck Templates" />
+        <div class="product-name">Slide Deck Templates</div>
+        <div class="price">IDR 20K</div>
+      </a>
+      <a href="coloring_book_templates.html" class="product">
+        <img src="https://cdn.lynkid.my.id/products/18-05-2025/1747550048613_1445117.webp" alt="Coloring Book Templates" />
+        <div class="product-name">Coloring Book Templates</div>
+        <div class="price">IDR 15K</div>
+      </a>
+      <a href="invitation_templates.html" class="product">
+        <img src="https://cdn.lynkid.my.id/products/18-05-2025/1747550198457_8297965.webp" alt="Invitation Templates" />
+        <div class="product-name">Invitation Templates</div>
+        <div class="price">IDR 20K</div>
+      </a>
+    </section>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-links">
+      <a href="bantuan.html">Bantuan</a> |
+      <a href="privasi.html">Kebijakan Privasi</a> |
+      <a href="tentang.html">Tentang Kami</a>
+    </div>
+    <div>© 2025 Timeplates | Sony Kurniawan Suhadi.</div>
+  </footer>
+
+  <script>
+    // Tampilkan nama pengguna
+    const user = JSON.parse(localStorage.getItem('userLoggedIn'));
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    if (user && user.name && user.name.trim() !== "") {
+      usernameDisplay.textContent = `Halo, ${user.name}`;
+    } else {
+      usernameDisplay.textContent = 'Halo, Pengguna';
+    }
+
+    // Logout
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', () => {
+      const confirmLogout = confirm("Yakin ingin logout?");
+      if (confirmLogout) {
+        localStorage.removeItem('userLoggedIn');
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
