@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Bantuan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 22px;
+      color: #df1010;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 90px auto 40px;
+      padding: 25px 30px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 25px;
+    }
+
+    a {
+      color: #4216ba;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      font-size: 1.05em;
+    }
+
+    p {
+      font-size: 1.05em;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade.show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 100px 15px 30px;
+        padding: 20px;
+      }
+
+      .back-button {
+        font-size: 18px;
+        top: 10px;
+        left: 10px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      li, p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="beranda.html" class="back-button">←</a>
+
+  <div class="container fade">
+    <h1>Bantuan</h1>
+    <p>Jika Anda memiliki pertanyaan mengenai pembelian, produk, atau pembayaran, silakan hubungi kami melalui:</p>
+    <ul>
+      <li>Email: <a href="mailto:sonysuhadi10@gmail.com">sonysuhadi10@gmail.com</a></li>
+      <li>WhatsApp: <a href="https://wa.me/6281387047210" target="_blank">+62 813-8704-7210</a></li>
+      <li>Instagram: <a href="https://www.instagram.com/timeplates_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@timeplates</a></li>
+    </ul>
+    <p>Kami akan dengan senang hati membantu Anda secepatnya.</p>
+  </div>
+
+  <script>
+    // Animasi saat kontainer masuk layar
+    const fadeEl = document.querySelector('.fade');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(fadeEl);
+  </script>
+
+</body>
+</html>
